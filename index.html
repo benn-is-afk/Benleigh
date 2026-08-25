@@ -28,7 +28,7 @@
     display:flex; flex-direction:column; align-items:center; gap:34px;
     font-family:'MedievalSharp', cursive;
   }
- 
+
   .card{
     width:100%; max-width:640px;
     background: linear-gradient(160deg, var(--panel), var(--panel-2));
@@ -56,7 +56,7 @@
   .corner-rune.tr{top:10px; right:10px; transform:scaleX(-1);}
   .corner-rune.bl{bottom:10px; left:10px; transform:scaleY(-1);}
   .corner-rune.br{bottom:10px; right:10px; transform:scale(-1,-1);}
- 
+
   /* ---- CHARACTER SHEET ---- */
   .sheet-header{
     text-align:center; margin-bottom:22px; position:relative; z-index:1;
@@ -75,7 +75,7 @@
   .char-name .fill{
     color:#8a7a5a; font-style:italic;
   }
- 
+
   .stat-grid{
     display:grid;
     grid-template-columns:130px 1fr;
@@ -105,7 +105,7 @@
     background:linear-gradient(to right, transparent, var(--gold-dim), transparent);
     margin: 2px 0;
   }
- 
+
   .badge{
     display:inline-block;
     padding:2px 10px;
@@ -116,7 +116,14 @@
     color:var(--parchment);
   }
   .badge.cosy{ border-color:var(--cosy-pink); color:var(--cosy-pink); }
- 
+  .badge.love{
+    border-color:#ff3d78;
+    color:#ff3d78;
+    background:rgba(255,61,120,0.1);
+    text-shadow:0 0 8px rgba(255,61,120,0.6);
+    box-shadow:0 0 10px rgba(255,61,120,0.35);
+  }
+
   /* ---- QUEST CARD ---- */
   .quest-card{
     width:100%; max-width:640px;
@@ -158,7 +165,7 @@
     letter-spacing:0.5px;
   }
   .quest-line .key{ color:var(--gold); text-transform:uppercase; letter-spacing:1px; margin-right:6px; }
- 
+
   .party-track{
     display:flex; justify-content:center; gap:10px; margin:20px 0 22px;
   }
@@ -175,14 +182,14 @@
     color:#1a1410;
     border-color:var(--gold);
   }
- 
+
   .join-prompt{
     font-family:'MedievalSharp', cursive;
     font-size:1.25rem;
     color:var(--parchment);
     margin:14px 0 24px;
   }
- 
+
   .choice-row{
     display:flex; justify-content:center; gap:22px; flex-wrap:wrap;
   }
@@ -216,75 +223,130 @@
     color:#a89a8a;
     margin-top:3px;
   }
+  button.choice{
+    cursor:pointer;
+    background-color: transparent;
+    font-family:'Cinzel', serif;
+  }
+  button.choice.yes{ background:rgba(90,160,106,0.08); }
+  button.choice.yes:hover{ background:rgba(90,160,106,0.2); }
+  button.choice.no{ background:rgba(138,58,58,0.08); }
+  button.choice.no:hover{ background:rgba(138,58,58,0.2); }
+  button.choice.back{
+    margin-top:20px;
+    border-color:var(--gold-dim);
+    color:var(--gold);
+    background:transparent;
+    min-width:0;
+    padding:10px 20px;
+  }
+  button.choice.back:hover{ background:rgba(201,162,75,0.12); }
+  .outcome strong{ color:#e8c96a; }
 </style>
 </head>
 <body>
- 
+
   <!-- CHARACTER SHEET -->
   <div class="card">
     <svg class="corner-rune tl" viewBox="0 0 40 40"><path d="M4 4 L20 4 M4 4 L4 20" stroke="#c9a24b" stroke-width="2" fill="none"/><circle cx="4" cy="4" r="2.5" fill="#c9a24b"/></svg>
     <svg class="corner-rune tr" viewBox="0 0 40 40"><path d="M4 4 L20 4 M4 4 L4 20" stroke="#c9a24b" stroke-width="2" fill="none"/><circle cx="4" cy="4" r="2.5" fill="#c9a24b"/></svg>
     <svg class="corner-rune bl" viewBox="0 0 40 40"><path d="M4 4 L20 4 M4 4 L4 20" stroke="#c9a24b" stroke-width="2" fill="none"/><circle cx="4" cy="4" r="2.5" fill="#c9a24b"/></svg>
     <svg class="corner-rune br" viewBox="0 0 40 40"><path d="M4 4 L20 4 M4 4 L4 20" stroke="#c9a24b" stroke-width="2" fill="none"/><circle cx="4" cy="4" r="2.5" fill="#c9a24b"/></svg>
- 
+
     <div class="sheet-header">
       <div class="sheet-label">✦ Character Sheet ✦</div>
-      <h1 class="char-name fill">[Her Name]</h1>
+      <h1 class="char-name fill">Princess Kayleigh Marie Day</h1>
     </div>
- 
+
     <div class="stat-grid">
       <div class="stat-key">Class</div>
       <div class="stat-val"><span class="badge">Enchantress</span></div>
- 
+
       <div class="stat-row-divider"></div>
- 
+
       <div class="stat-key">Alignment</div>
       <div class="stat-val">Questionably Lawful</div>
- 
+
       <div class="stat-row-divider"></div>
- 
+
       <div class="stat-key">Special Ability</div>
-      <div class="stat-val">Makes Benn ridiculously happy</div>
- 
+      <div class="stat-val">Makes Benny ridiculously happy</div>
+
       <div class="stat-row-divider"></div>
- 
+
       <div class="stat-key">Passive Ability</div>
-      <div class="stat-val"><span class="badge cosy">+10 Cosiness</span></div>
- 
+      <div class="stat-val"><span class="badge cosy">+10 Cosiness</span> <span class="badge love">+25 Love</span></div>
+
       <div class="stat-row-divider"></div>
- 
+
       <div class="stat-key">Weakness</div>
-      <div class="stat-val fill">[inside joke]</div>
- 
+      <div class="stat-val fill">Wild Stumps</div>
+
       <div class="stat-row-divider"></div>
- 
+
       <div class="stat-key">Current Quest</div>
-      <div class="stat-val">???</div>
+      <div class="stat-val">A Knight in the North</div>
     </div>
   </div>
- 
+
   <!-- QUEST UNLOCK -->
   <div class="quest-card">
-    <div class="quest-unlocked">✦ New Quest Unlocked ✦</div>
-    <div class="quest-title">The Lavender Lodge</div>
- 
-    <div class="quest-line"><span class="key">Objective</span>Establish a cosy life together in the Highlands</div>
-    <div class="quest-line"><span class="key">Required Party Members</span>2</div>
-    <div class="quest-line"><span class="key">Current Party</span>1</div>
- 
-    <div class="party-track">
-      <div class="party-slot filled">1</div>
-      <div class="party-slot">2</div>
+
+    <div id="quest-main">
+      <div class="quest-unlocked">✦ New Quest Unlocked ✦</div>
+      <div class="quest-title">The Lavender Lodge</div>
+
+      <div class="quest-line"><span class="key">Objective</span>Establish a cosy life together in the Lavender Lodge, somewhere in the Highlands.</div>
+      <div class="quest-line"><span class="key">Required Party Members</span>2</div>
+      <div class="quest-line"><span class="key">Current Party</span>1</div>
+
+      <div class="party-track">
+        <div class="party-slot filled">1</div>
+        <div class="party-slot">2</div>
+      </div>
+
+      <div class="join-prompt">Will you join my party?</div>
+
+      <div class="choice-row">
+        <button type="button" class="choice yes" onclick="showOutcome('yes')">❤️ YES <span class="sub">Become my girlfriend</span></button>
+        <button type="button" class="choice no" onclick="showOutcome('no')">💀 NO <span class="sub">Ah well... you can't blame a Paladin for asking!</span></button>
+      </div>
     </div>
- 
-    <div class="join-prompt">Will you join my party?</div>
- 
-    <div class="choice-row">
-      <div class="choice yes">❤️ YES <span class="sub">Become my girlfriend</span></div>
-      <div class="choice no">💀 NO <span class="sub">Face the consequences of making a Paladin sad</span></div>
+
+    <div id="outcome-yes" class="outcome" style="display:none;">
+      <div class="quest-unlocked">✦ Quest Accepted ✦</div>
+      <div class="quest-title">Party Complete</div>
+
+      <div class="party-track">
+        <div class="party-slot filled">1</div>
+        <div class="party-slot filled">2</div>
+      </div>
+
+      <div class="join-prompt">Achievement unlocked: <strong>The Lavender Lodge</strong> - co-op mode engaged.</div>
+      <div class="quest-line">Tea will be brewed. Blankets will be deployed. The Lavender Lodge awaits two lovers.</div>
+
+      <button type="button" class="choice back" onclick="showOutcome('main')">↺ Return to Quest Log</button>
     </div>
+
+    <div id="outcome-no" class="outcome" style="display:none;">
+      <div class="quest-unlocked" style="color:#e88a8a;">✦ Quest Failed ✦</div>
+      <div class="quest-title">A Paladin Weeps</div>
+
+      <div class="join-prompt">Somewhere, a fireplace dims. The blankets go unused. The tea grows cold.</div>
+      <div class="quest-line">Rumour has it this outcome can be reversed.</div>
+
+      <button type="button" class="choice back" onclick="showOutcome('main')">↺ Reconsider</button>
+    </div>
+
   </div>
- 
+
+  <script>
+    function showOutcome(which){
+      document.getElementById('quest-main').style.display = which === 'main' ? '' : 'none';
+      document.getElementById('outcome-yes').style.display = which === 'yes' ? '' : 'none';
+      document.getElementById('outcome-no').style.display = which === 'no' ? '' : 'none';
+    }
+  </script>
+
 </body>
 </html>
- 
