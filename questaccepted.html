@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Quest Accepted — The Lavender Lodge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=MedievalSharp&family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --gold:#e8c96a;
+    --parchment:#f3e6c8;
+    --pink:#ff3d78;
+    --green:#5aa06a;
+  }
+  *{box-sizing:border-box;}
+  html,body{ height:100%; }
+  body{
+    margin:0;
+    min-height:100vh;
+    overflow:hidden;
+    background:
+      radial-gradient(ellipse at 50% 0%, #2c2140 0%, transparent 60%),
+      radial-gradient(ellipse at 20% 100%, #241a30 0%, transparent 55%),
+      radial-gradient(ellipse at 80% 100%, #1a2a30 0%, transparent 55%),
+      #120e18;
+    font-family:'MedievalSharp', cursive;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+  }
+
+  /* twinkling stars */
+  .stars{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+  }
+  .star{
+    position:absolute;
+    width:2px; height:2px;
+    background:#fff;
+    border-radius:50%;
+    opacity:0.6;
+    animation:twinkle 3s ease-in-out infinite;
+  }
+  @keyframes twinkle{
+    0%,100%{ opacity:0.2; }
+    50%{ opacity:1; }
+  }
+
+  /* confetti */
+  .confetti{
+    position:fixed;
+    top:-20px;
+    z-index:2;
+    pointer-events:none;
+    animation-name: fall, sway;
+    animation-timing-function: linear, ease-in-out;
+    animation-iteration-count: infinite, infinite;
+  }
+  @keyframes fall{
+    0%{ transform:translateY(-10vh) rotate(0deg); }
+    100%{ transform:translateY(110vh) rotate(720deg); }
+  }
+  @keyframes sway{
+    0%,100%{ margin-left:0px; }
+    50%{ margin-left:40px; }
+  }
+
+  /* floating hearts */
+  .heart{
+    position:fixed;
+    bottom:-40px;
+    z-index:2;
+    pointer-events:none;
+    color:var(--pink);
+    animation-name: floatUp, swayHeart;
+    animation-timing-function: linear, ease-in-out;
+    animation-iteration-count: infinite, infinite;
+    text-shadow:0 0 10px rgba(255,61,120,0.8);
+  }
+  @keyframes floatUp{
+    0%{ transform:translateY(0); opacity:0; }
+    10%{ opacity:1; }
+    90%{ opacity:1; }
+    100%{ transform:translateY(-110vh); opacity:0; }
+  }
+  @keyframes swayHeart{
+    0%,100%{ margin-left:-20px; }
+    50%{ margin-left:20px; }
+  }
+
+  .card{
+    position:relative;
+    z-index:5;
+    width:100%;
+    max-width:600px;
+    margin:20px;
+    background: linear-gradient(160deg, #221a1f, #2c2027);
+    border:2px solid var(--gold);
+    border-radius:12px;
+    box-shadow:
+      0 0 40px rgba(232,201,106,0.25),
+      0 0 0 1px rgba(232,201,106,0.4) inset,
+      0 25px 60px rgba(0,0,0,0.7);
+    padding:44px 36px 40px;
+    text-align:center;
+  }
+
+  .quest-unlocked{
+    font-family:'Cinzel Decorative', serif;
+    font-size:1rem;
+    letter-spacing:3px;
+    color:var(--gold);
+    text-transform:uppercase;
+    margin-bottom:8px;
+    animation:pulseGlow 2.2s ease-in-out infinite;
+  }
+  @keyframes pulseGlow{
+    0%,100%{ text-shadow:0 0 6px rgba(232,201,106,0.4);}
+    50%{ text-shadow:0 0 22px rgba(232,201,106,1);}
+  }
+
+  .quest-title{
+    font-family:'UnifrakturMaguntia', cursive;
+    font-size:2.8rem;
+    color:var(--parchment);
+    margin:6px 0 26px;
+  }
+
+  .party-track{
+    display:flex; justify-content:center; gap:12px; margin:8px 0 26px;
+  }
+  .party-slot{
+    width:40px; height:40px;
+    border:2px solid var(--gold);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Cinzel', serif; font-size:0.95rem;
+    background:var(--gold);
+    color:#1a1410;
+    box-shadow:0 0 14px rgba(232,201,106,0.6);
+  }
+
+  .join-prompt{
+    font-size:1.2rem;
+    color:var(--parchment);
+    margin:14px 0 10px;
+    line-height:1.6;
+  }
+  .join-prompt strong{ color:var(--gold); }
+
+  .quest-line{
+    font-family:'Cinzel', serif;
+    font-size:0.95rem;
+    color:#c9bda2;
+    margin:14px 0 0;
+    letter-spacing:0.3px;
+    line-height:1.7;
+  }
+
+  .seal-row{
+    margin-top:30px;
+    font-family:'Cinzel Decorative', serif;
+    font-size:0.75rem;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:#8a7a5a;
+  }
+</style>
+</head>
+<body>
+
+<div class="stars" id="stars"></div>
+
+<div class="card">
+  <div class="quest-unlocked">✦ Quest Accepted ✦</div>
+  <div class="quest-title">Party Complete</div>
+
+  <div class="party-track">
+    <div class="party-slot">1</div>
+    <div class="party-slot">2</div>
+  </div>
+
+  <div class="join-prompt">Achievement unlocked: <strong>The Lavender Lodge</strong> — co-op mode engaged.</div>
+  <div class="quest-line">Tea will be brewed. Blankets will be deployed. The Highlands await.</div>
+
+  <div class="seal-row">Party of Two, Officially Formed</div>
+</div>
+
+<script>
+  // twinkling stars
+  const starField = document.getElementById('stars');
+  for (let i = 0; i < 80; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    s.style.left = Math.random() * 100 + 'vw';
+    s.style.top = Math.random() * 100 + 'vh';
+    s.style.animationDelay = (Math.random() * 3) + 's';
+    starField.appendChild(s);
+  }
+
+  // confetti
+  const confettiColors = ['#e8c96a', '#ff3d78', '#5aa06a', '#f3e6c8', '#8a6f33'];
+  for (let i = 0; i < 60; i++) {
+    const c = document.createElement('div');
+    c.className = 'confetti';
+    const size = 6 + Math.random() * 6;
+    c.style.left = Math.random() * 100 + 'vw';
+    c.style.width = size + 'px';
+    c.style.height = (size * 0.4) + 'px';
+    c.style.background = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+    c.style.opacity = 0.8;
+    const duration = 4 + Math.random() * 4;
+    c.style.animationDuration = duration + 's, ' + (1 + Math.random()) + 's';
+    c.style.animationDelay = (Math.random() * 5) + 's, 0s';
+    document.body.appendChild(c);
+  }
+
+  // floating hearts
+  for (let i = 0; i < 18; i++) {
+    const h = document.createElement('div');
+    h.className = 'heart';
+    h.innerHTML = '❤';
+    h.style.left = Math.random() * 100 + 'vw';
+    h.style.fontSize = (14 + Math.random() * 16) + 'px';
+    const duration = 6 + Math.random() * 5;
+    h.style.animationDuration = duration + 's, ' + (2 + Math.random() * 2) + 's';
+    h.style.animationDelay = (Math.random() * 6) + 's, 0s';
+    document.body.appendChild(h);
+  }
+</script>
+
+</body>
+</html>
