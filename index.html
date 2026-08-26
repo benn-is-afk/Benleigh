@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Character Sheet - Kayleigh Day</title>
+<title>Character Sheet — Party Invitation</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=MedievalSharp&family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -255,7 +255,7 @@
 
     <div class="sheet-header">
       <div class="sheet-label">✦ Character Sheet ✦</div>
-      <h1 class="char-name fill">Princess Kayleigh Marie Day</h1>
+      <h1 class="char-name fill">[Her Name]</h1>
     </div>
 
     <div class="stat-grid">
@@ -270,7 +270,7 @@
       <div class="stat-row-divider"></div>
 
       <div class="stat-key">Special Ability</div>
-      <div class="stat-val">Makes Benny ridiculously happy</div>
+      <div class="stat-val">Makes Benn ridiculously happy</div>
 
       <div class="stat-row-divider"></div>
 
@@ -280,12 +280,12 @@
       <div class="stat-row-divider"></div>
 
       <div class="stat-key">Weakness</div>
-      <div class="stat-val fill">Wild Stumps</div>
+      <div class="stat-val fill">[inside joke]</div>
 
       <div class="stat-row-divider"></div>
 
       <div class="stat-key">Current Quest</div>
-      <div class="stat-val">A Knight in the North</div>
+      <div class="stat-val">???</div>
     </div>
   </div>
 
@@ -296,7 +296,7 @@
       <div class="quest-unlocked">✦ New Quest Unlocked ✦</div>
       <div class="quest-title">The Lavender Lodge</div>
 
-      <div class="quest-line"><span class="key">Objective</span>Establish a cosy life together in the Lavender Lodge, somewhere in the Highlands.</div>
+      <div class="quest-line"><span class="key">Objective</span>Establish a cosy life together in the Highlands</div>
       <div class="quest-line"><span class="key">Required Party Members</span>2</div>
       <div class="quest-line"><span class="key">Current Party</span>1</div>
 
@@ -308,45 +308,12 @@
       <div class="join-prompt">Will you join my party?</div>
 
       <div class="choice-row">
-        <button type="button" class="choice yes" onclick="showOutcome('yes')">❤️ YES <span class="sub">Become my girlfriend</span></button>
-        <button type="button" class="choice no" onclick="showOutcome('no')">💀 NO <span class="sub">Ah well... you can't blame a Paladin for asking!</span></button>
+        <a href="quest_accepted.html" class="choice yes" style="display:inline-block; text-decoration:none;">❤️ YES <span class="sub">Become my girlfriend</span></a>
+        <a href="quest_failed.html" class="choice no" style="display:inline-block; text-decoration:none;">💀 NO <span class="sub">Face the consequences of making a Paladin sad</span></a>
       </div>
-    </div>
-
-    <div id="outcome-yes" class="outcome" style="display:none;">
-      <div class="quest-unlocked">✦ Quest Accepted ✦</div>
-      <div class="quest-title">Party Complete</div>
-
-      <div class="party-track">
-        <div class="party-slot filled">1</div>
-        <div class="party-slot filled">2</div>
-      </div>
-
-      <div class="join-prompt">Achievement unlocked: <strong>The Lavender Lodge</strong> - co-op mode engaged.</div>
-      <div class="quest-line">Tea will be brewed. Blankets will be deployed. The Lavender Lodge awaits two lovers.</div>
-
-      <button type="button" class="choice back" onclick="showOutcome('main')">↺ Return to Quest Log</button>
-    </div>
-
-    <div id="outcome-no" class="outcome" style="display:none;">
-      <div class="quest-unlocked" style="color:#e88a8a;">✦ Quest Failed ✦</div>
-      <div class="quest-title">A Paladin Weeps</div>
-
-      <div class="join-prompt">Somewhere, a fireplace dims. The blankets go unused. The tea grows cold.</div>
-      <div class="quest-line">Rumour has it this outcome can be reversed.</div>
-
-      <button type="button" class="choice back" onclick="showOutcome('main')">↺ Reconsider</button>
     </div>
 
   </div>
-
-  <script>
-    function showOutcome(which){
-      document.getElementById('quest-main').style.display = which === 'main' ? '' : 'none';
-      document.getElementById('outcome-yes').style.display = which === 'yes' ? '' : 'none';
-      document.getElementById('outcome-no').style.display = which === 'no' ? '' : 'none';
-    }
-  </script>
 
 </body>
 </html>
