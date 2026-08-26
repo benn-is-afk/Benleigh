@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Quest Failed — A Paladin Weeps</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=MedievalSharp&family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --grey:#8a8a8a;
+    --parchment:#b8ada0;
+    --red:#7a4444;
+  }
+  *{box-sizing:border-box;}
+  html,body{ height:100%; }
+  body{
+    margin:0;
+    min-height:100vh;
+    overflow:hidden;
+    background:
+      radial-gradient(ellipse at 50% 0%, #23262b 0%, transparent 65%),
+      radial-gradient(ellipse at 50% 100%, #16181c 0%, transparent 60%),
+      #101113;
+    font-family:'MedievalSharp', cursive;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+  }
+
+  /* rain */
+  .rain{
+    position:fixed; inset:0; z-index:1; pointer-events:none;
+  }
+  .drop{
+    position:absolute;
+    top:-60px;
+    width:1px;
+    background:linear-gradient(to bottom, transparent, rgba(180,190,200,0.5));
+    animation-name: fallRain;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+  @keyframes fallRain{
+    0%{ transform:translateY(0); }
+    100%{ transform:translateY(120vh); }
+  }
+
+  /* fog drift */
+  .fog{
+    position:fixed;
+    inset:-10%;
+    z-index:0;
+    background:
+      radial-gradient(ellipse 60% 30% at 20% 80%, rgba(120,120,130,0.10), transparent 60%),
+      radial-gradient(ellipse 50% 25% at 80% 90%, rgba(120,120,130,0.08), transparent 60%);
+    animation: drift 18s ease-in-out infinite;
+    pointer-events:none;
+  }
+  @keyframes drift{
+    0%,100%{ transform:translateX(0); }
+    50%{ transform:translateX(3%); }
+  }
+
+  .card{
+    position:relative;
+    z-index:5;
+    width:100%;
+    max-width:600px;
+    margin:20px;
+    background: linear-gradient(160deg, #1c1c1e, #201f22);
+    border:1px solid #4a4a4d;
+    border-radius:12px;
+    box-shadow:
+      0 0 0 1px rgba(120,120,130,0.15) inset,
+      0 25px 60px rgba(0,0,0,0.75);
+    padding:44px 36px 40px;
+    text-align:center;
+  }
+
+  .quest-unlocked{
+    font-family:'Cinzel Decorative', serif;
+    font-size:0.95rem;
+    letter-spacing:3px;
+    color:var(--red);
+    text-transform:uppercase;
+    margin-bottom:8px;
+    opacity:0.85;
+  }
+
+  .quest-title{
+    font-family:'UnifrakturMaguntia', cursive;
+    font-size:2.6rem;
+    color:var(--parchment);
+    margin:6px 0 30px;
+    opacity:0.92;
+    text-shadow:0 2px 10px rgba(0,0,0,0.6);
+  }
+
+  .drip-icon{
+    margin:0 auto 22px;
+    width:44px; height:44px;
+    opacity:0.7;
+  }
+
+  .join-prompt{
+    font-size:1.15rem;
+    color:var(--parchment);
+    margin:10px 0;
+    line-height:1.7;
+    opacity:0.9;
+  }
+
+  .quest-line{
+    font-family:'Cinzel', serif;
+    font-size:0.9rem;
+    color:#7a7a7d;
+    margin:16px 0 0;
+    letter-spacing:0.3px;
+    line-height:1.7;
+    font-style:italic;
+  }
+
+  .seal-row{
+    margin-top:32px;
+    font-family:'Cinzel Decorative', serif;
+    font-size:0.72rem;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:#5a5a5d;
+  }
+</style>
+</head>
+<body>
+
+<div class="fog"></div>
+<div class="rain" id="rain"></div>
+
+<div class="card">
+  <div class="quest-unlocked">✦ Quest Failed ✦</div>
+  <div class="quest-title">A Paladin Weeps</div>
+
+  <svg class="drip-icon" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
+    <path d="M22 4 C22 4, 34 22, 34 30 C34 37.2 28.8 42 22 42 C15.2 42 10 37.2 10 30 C10 22, 22 4, 22 4 Z"
+      fill="none" stroke="#7a8a94" stroke-width="1.6" opacity="0.8"/>
+  </svg>
+
+  <div class="join-prompt">Somewhere, a fireplace dims. The blankets go unused. The tea grows cold.</div>
+  <div class="quest-line">Rumour has it this outcome can be reversed.</div>
+
+  <div class="seal-row">Party of One, Still</div>
+</div>
+
+<script>
+  const rainField = document.getElementById('rain');
+  for (let i = 0; i < 140; i++) {
+    const d = document.createElement('div');
+    d.className = 'drop';
+    d.style.left = Math.random() * 100 + 'vw';
+    d.style.height = (14 + Math.random() * 26) + 'px';
+    const duration = 0.6 + Math.random() * 0.7;
+    d.style.animationDuration = duration + 's';
+    d.style.animationDelay = (Math.random() * 2) + 's';
+    d.style.opacity = 0.3 + Math.random() * 0.4;
+    rainField.appendChild(d);
+  }
+</script>
+
+</body>
+</html>
